@@ -9,25 +9,45 @@ import com.jjrjlj.josaflix.exception.FilmeNaoEncontradoException;
 import com.jjrjlj.josaflix.model.Filme;
 import com.jjrjlj.josaflix.repository.FilmesDao;
 
+/**
+ * 
+ * @author josimar-junior
+ *
+ */
+
 @Service
 public class FilmesService {
 
 	@Autowired
 	private FilmesDao filmeDAO;
-	
-	public void salvarOuAtualizar(Filme filme) {
+
+	public void salvar(Filme filme) {
 		filmeDAO.save(filme);
 	}
-	
+
+	public Filme atualizar(Filme filme) {
+		verificarExistencia(filme.getId());
+		return filmeDAO.save(filme);
+	}
+
 	public List<Filme> listar() {
 		return filmeDAO.findAll();
 	}
-	
+
 	public Filme buscar(Long id) {
 		Filme filme = filmeDAO.findOne(id);
-		if(filme == null)
+		if (filme == null)
 			throw new FilmeNaoEncontradoException("Filme não encontrado");
-		
+
 		return filme;
+	}
+
+	public void deletar(Long id) {
+		verificarExistencia(id);
+		filmeDAO.delete(id);
+	}
+
+	private void verificarExistencia(Long id) {
+		buscar(id);
 	}
 }

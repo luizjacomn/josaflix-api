@@ -9,6 +9,12 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * 
+ * @author luiz-jaco
+ *
+ */
+
 @Entity
 @Table(name = "filme")
 public class Filme {

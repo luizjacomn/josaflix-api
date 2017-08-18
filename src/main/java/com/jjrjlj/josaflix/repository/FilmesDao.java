@@ -5,6 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.jjrjlj.josaflix.model.Filme;
 
+/**
+ * 
+ * @author luiz-jaco
+ *
+ */
+
 @Repository
 public interface FilmesDao extends JpaRepository<Filme, Long> {
 	
